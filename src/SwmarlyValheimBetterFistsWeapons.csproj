@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>SwmarlyValheimBetterFistsWeapons</AssemblyName>
+    <RootNamespace>SwmarlyValheimBetterFistsWeapons</RootNamespace>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <OutputPath>bin\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <Version>1.0.0</Version>
+    <Authors>Swmarly</Authors>
+    <Description>Gives all Valheim Unarmed/Fists weapons the vanilla knife secondary attack.</Description>
+  </PropertyGroup>
+
+  <Target Name="ValidateValheimReferences" BeforeTargets="ResolveReferences">
+    <Error Condition="!Exists('$(ValheimManagedDir)/assembly_valheim.dll')" Text="Valheim assemblies were not found. Build with -p:ValheimManagedDir=path-to-valheim_Data/Managed." />
+    <Error Condition="!Exists('$(BepInExCoreDir)/BepInEx.dll')" Text="BepInEx core assemblies were not found. Build with -p:BepInExCoreDir=path-to-BepInEx/core." />
+  </Target>
+</Project>
