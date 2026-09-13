@@ -9,6 +9,7 @@ Fist weapons such as the Fenris claws no longer perform the unarmed kick when mi
 - the knife secondary animation and hit shape;
 - the knife attack timing and stamina cost;
 - the knife's special-attack damage multiplier;
+- the fist weapon's own slash audio and visual effects from its primary attack;
 - the normal weapon damage and Fists/Unarmed skill scaling of the equipped fist weapon.
 
 The mod copies the live knife attack at runtime instead of hardcoding a multiplier. That keeps the behavior aligned with the installed Valheim build and with any knife-balance changes that happen before the item database is built.
@@ -42,4 +43,3 @@ python scripts/package.py
 ```
 
 The GitHub Actions workflow downloads the current dedicated-server assemblies and builds the Thunderstore package automatically.
-

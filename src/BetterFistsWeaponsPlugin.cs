@@ -2,6 +2,7 @@ using System;
 using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
+using System.Reflection;
 using UnityEngine;
 
 namespace SwmarlyValheimBetterFistsWeapons
@@ -123,9 +124,17 @@ namespace SwmarlyValheimBetterFistsWeapons
                     continue;
                 }
 
+                // Keep the original fist weapon's attack effects. The primary attack is
+                // where vanilla stores the fist slash audio and its related VFX. Copy only
+                // effect lists, not combat values, so the knife attack still supplies the
+                // heavy-attack animation, timing, stamina cost, range, and damage boost.
+                Attack fistAttack = shared.m_attack ?? shared.m_secondaryAttack;
+                Attack replacementAttack = knifeSecondaryAttack.Clone();
+                CopyAttackEffectLists(fistAttack, replacementAttack);
+
                 // Valheim clones this object again when an attack starts, so each weapon
                 // receives its own isolated copy while the shared definition stays stable.
-                shared.m_secondaryAttack = knifeSecondaryAttack.Clone();
+                shared.m_secondaryAttack = replacementAttack;
                 replacedCount++;
 
                 BetterFistsWeaponsPlugin.Log.LogDebug(
@@ -177,6 +186,28 @@ namespace SwmarlyValheimBetterFistsWeapons
 
             return fallback;
         }
+
+        private static void CopyAttackEffectLists(Attack source, Attack target)
+        {
+            if (source == null || target == null)
+            {
+                return;
+            }
+
+            // EffectList contains the Unity effect prefabs that drive attack audio and VFX.
+            // Copy every EffectList field so this remains compatible with effects added to
+            // the Attack class by the current Valheim build, without copying damage or
+            // animation fields from the fist's normal attack.
+            FieldInfo[] fields = typeof(Attack).GetFields(
+                BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+
+            foreach (FieldInfo field in fields)
+            {
+                if (field.FieldType == typeof(EffectList))
+                {
+                    field.SetValue(target, field.GetValue(source));
+                }
+            }
+        }
     }
 }
-
