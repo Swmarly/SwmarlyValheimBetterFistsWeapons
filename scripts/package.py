@@ -6,7 +6,7 @@ import zipfile
 
 
 PROJECT_NAME = "SwmarlyValheimBetterFistsWeapons"
-VERSION = "1.0.0"
+VERSION = "1.0.1"
 
 
 def find_build_output(root: Path) -> Path:

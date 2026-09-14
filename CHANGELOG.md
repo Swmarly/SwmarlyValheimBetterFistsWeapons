@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1
+
+- Version bump for the first release package.
+
 ## 1.0.0
 
 - Initial release.

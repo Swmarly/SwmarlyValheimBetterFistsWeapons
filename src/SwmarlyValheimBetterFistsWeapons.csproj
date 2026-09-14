@@ -9,7 +9,7 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <OutputPath>bin\</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Authors>Swmarly</Authors>
     <Description>Gives all Valheim Unarmed/Fists weapons the vanilla knife secondary attack.</Description>
   </PropertyGroup>

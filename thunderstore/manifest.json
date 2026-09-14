@@ -1,6 +1,6 @@
 {
   "name": "SwmarlyValheimBetterFistsWeapons",
-  "version_number": "1.0.0",
+  "version_number": "1.0.1",
   "website_url": "https://github.com/Swmarly/SwmarlyValheimBetterFistsWeapons",
   "description": "Gives every Unarmed/Fists weapon the vanilla knife secondary attack instead of the unarmed kick.",
   "dependencies": [
@@ -11,4 +11,3 @@
     "Target_Game_Version": "Valheim 1.0"
   }
 }
-
