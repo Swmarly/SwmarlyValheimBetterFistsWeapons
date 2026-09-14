@@ -86,6 +86,7 @@ namespace SwmarlyValheimBetterFistsWeapons
     internal static class FistWeaponAttackReplacer
     {
         private const string PreferredKnifePrefab = "KnifeFlint";
+        private const string BareHandsPrefab = "PlayerUnarmed";
 
         internal static void Apply(ObjectDB objectDb)
         {
@@ -114,6 +115,14 @@ namespace SwmarlyValheimBetterFistsWeapons
 
                 ItemDrop itemDrop = prefab.GetComponent<ItemDrop>();
                 if (itemDrop == null || itemDrop.m_itemData == null || itemDrop.m_itemData.m_shared == null)
+                {
+                    continue;
+                }
+
+                // PlayerUnarmed is the hidden vanilla item used when the player has
+                // nothing equipped. It uses SkillType.Unarmed too, but must retain the
+                // normal kick instead of receiving the fist-weapon special attack.
+                if (prefab.name == BareHandsPrefab)
                 {
                     continue;
                 }

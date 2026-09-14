@@ -22,7 +22,7 @@ The plugin also loads in the dedicated-server process. The server does not need 
 
 ## Compatibility
 
-The patch runs after Valheim builds `ObjectDB`. It looks for a knife item with a real secondary attack, then applies a clone of that attack to every item whose skill type is `Skills.SkillType.Unarmed`. It safely skips non-item entries in `ObjectDB.m_items`.
+The patch runs after Valheim builds `ObjectDB`. It looks for a knife item with a real secondary attack, then applies a clone of that attack to actual fist-weapon items whose skill type is `Skills.SkillType.Unarmed`. Valheim's `PlayerUnarmed` placeholder is explicitly excluded, so empty hands retain the normal vanilla unarmed kick. Non-item entries in `ObjectDB.m_items` are also skipped.
 
 If another mod deliberately changes knife or fist secondary attacks, the final definition present when `ObjectDB.Awake` completes is what this mod mirrors. Load order can therefore matter when another mod also edits these same attack fields.
 
